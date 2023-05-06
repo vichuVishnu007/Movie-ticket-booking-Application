@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "5b78eb45-0e0b-40f7-b598-1db93f544c9f",
+		"name": "Movie ticket booking management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fetch movies - admin user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8082/api/v1/getAllMovies",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"getAllMovies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create movie - admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWNodSIsImlhdCI6MTY4MzE4MTU4MSwiZXhwIjoxNjgzMTg0NTgxfQ.WRftP4fCJzOdL-8VO9hj42-aLEhFZIg_XXm8zL54JH0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieId\": 0,\r\n    \"movieName\": \"Raw\",\r\n    \"theatreDetails\": [\r\n        {\r\n            \"theatreName\": \"Vettri cinema\",\r\n            \"ticketPrice\": 140.0\r\n        },\r\n        {\r\n            \"theatreName\": \"Rohini cinema\",\r\n            \"ticketPrice\": 120.0\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/api/v1/addMovie",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"addMovie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register - user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":1,\r\n    \"username\":\"vichu\",\r\n    \"password\":\"23@ctscdefse\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8084/auth/v1/addUser",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"v1",
+						"addUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login - admin user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"vichu\",\r\n    \"password\":\"23@ctscdefse\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/call/consumer/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"call",
+						"consumer",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "book tickets - user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aXNobnUiLCJpYXQiOjE2ODMxOTU1NjcsImV4cCI6MTY4MzE5ODU2N30.dGXjG8NErsZHrNyuAkM_yf62KZk1_i2heN1-_MzDU7A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionId\":0,\r\n    \"bookedSeats\":10,\r\n    \"issuedAt\":null,\r\n    \"movie_id_fk\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/api/v1/ticket/add/18",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"ticket",
+						"add",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8084/auth/v1/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8084/auth/v1/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgetpassword - user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8084/auth/v1/forgetPassword/vichu/23@ctscdefse",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"auth",
+						"v1",
+						"forgetPassword",
+						"vichu",
+						"23@ctscdefse"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
